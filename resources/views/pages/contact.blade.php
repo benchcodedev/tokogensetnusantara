@@ -31,7 +31,7 @@
         <!-- Kolom Kiri: WhatsApp & Instagram (7 Kolom) -->
         <div style="grid-column: span 7;">
             <!-- WhatsApp Card -->
-            <div style="background-color: var(--surface); border: var(--border-thin); border-radius: var(--radius-card); padding: 36px; margin-bottom: 24px;">
+            <div class="contact-card" style="margin-bottom: 24px;">
                 <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
                     <div style="width: 52px; height: 52px; border-radius: 50%; background-color: #25D366; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
@@ -60,7 +60,7 @@
             </div>
 
             <!-- Instagram Card -->
-            <div style="background-color: var(--surface); border: var(--border-thin); border-radius: var(--radius-card); padding: 36px;">
+            <div class="contact-card">
                 <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
                     <div style="width: 52px; height: 52px; border-radius: 50%; background-color: var(--ink); color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -87,7 +87,7 @@
 
         <!-- Kolom Kanan: Info Bisnis & Layanan (5 Kolom) -->
         <div style="grid-column: span 5;">
-            <div style="background-color: var(--surface); border: var(--border-thin); border-radius: var(--radius-card); padding: 36px;">
+            <div class="contact-card">
                 <h3 style="font-size: 1.35rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: var(--border-thin);">
                     Informasi Bisnis
                 </h3>

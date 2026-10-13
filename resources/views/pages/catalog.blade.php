@@ -70,13 +70,13 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 12px; margin-top: 16px; justify-content: flex-end;">
+            <div class="filter-actions">
                 @if(request()->hasAny(['q', 'brand', 'kapasitas', 'tipe']))
-                    <a href="{{ route('catalog.index') }}" class="btn btn-secondary" style="height: 48px; line-height: 48px; padding: 0 20px;">
+                    <a href="{{ route('catalog.index') }}" class="btn btn-secondary">
                         Reset Filter
                     </a>
                 @endif
-                <button type="submit" class="btn btn-primary" style="height: 48px;">
+                <button type="submit" class="btn btn-primary">
                     Terapkan Filter
                 </button>
             </div>

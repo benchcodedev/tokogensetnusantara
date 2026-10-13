@@ -28,7 +28,7 @@
     </div>
 
     <!-- 8 Kota Layanan Cards Grid -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-bottom: 72px;">
+    <div class="service-cities-grid">
         @foreach($cities as $city)
             <div style="background-color: var(--surface); border: var(--border-thin); border-radius: var(--radius-card); padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>

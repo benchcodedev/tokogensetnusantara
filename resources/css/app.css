@@ -32,8 +32,15 @@
 
 @media (max-width: 768px) {
   :root {
-    --pad-x: 24px;
-    --section-gap: 64px;
+    --pad-x: 20px;
+    --section-gap: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --pad-x: 16px;
+    --section-gap: 44px;
   }
 }
 
@@ -42,6 +49,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  min-width: 0;
 }
 
 html {
@@ -49,6 +57,9 @@ html {
   scroll-behavior: smooth;
   background-color: var(--bg);
   color: var(--ink);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -59,7 +70,15 @@ body {
   background-color: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  position: relative;
+}
+
+img, video, svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Typography Classes */
@@ -68,24 +87,26 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ink);
   font-weight: 700;
   line-height: 1.15;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 h1 {
-  font-size: clamp(2.6rem, 6vw, 5.2rem);
-  line-height: 1.02;
+  font-size: clamp(1.85rem, 6.5vw, 4.5rem);
+  line-height: 1.05;
   letter-spacing: -0.02em;
   font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.12;
+  font-size: clamp(1.45rem, 4.5vw, 2.75rem);
+  line-height: 1.15;
   letter-spacing: -0.015em;
   font-weight: 800;
 }
 
 h3 {
-  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-size: clamp(1.2rem, 3.2vw, 1.85rem);
   letter-spacing: -0.01em;
 }
 
@@ -93,6 +114,8 @@ p {
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--muted);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 a {
@@ -140,6 +163,20 @@ img {
   }
 }
 
+@media (max-width: 768px) {
+  .grid-12 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+  .grid-12 > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: auto !important;
+  }
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -158,6 +195,20 @@ img {
   transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease;
   white-space: nowrap;
   min-width: 44px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .btn {
+    height: auto;
+    min-height: 48px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 100%;
+  }
 }
 
 .btn-primary {
@@ -235,14 +286,17 @@ img {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  gap: 8px;
 }
 
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   color: var(--ink);
   text-decoration: none;
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .brand-logo-circle {
@@ -263,10 +317,13 @@ img {
 .brand-name {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: clamp(0.95rem, 3.8vw, 1.2rem);
   color: var(--ink);
   white-space: nowrap;
   letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100vw - 110px);
 }
 
 .nav-menu {
@@ -325,12 +382,17 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   background-color: var(--surface);
   z-index: 200;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
+  padding: 20px 16px;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .mobile-drawer.open {
@@ -349,17 +411,18 @@ img {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 32px 0;
+  margin: 24px 0;
 }
 
 .drawer-link {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
   font-weight: 800;
   color: var(--ink);
   text-decoration: none;
-  padding: 8px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--line);
+  word-break: break-word;
 }
 
 .drawer-close {
@@ -438,13 +501,26 @@ img {
 .hero-content {
   position: relative;
   z-index: 3;
-  padding-top: 96px;
-  padding-bottom: 64px;
+  padding-top: 80px;
+  padding-bottom: 56px;
+}
+
+@media (max-width: 600px) {
+  .hero-content {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
 }
 
 .hero-main {
   max-width: 780px;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 600px) {
+  .hero-main {
+    margin-bottom: 32px;
+  }
 }
 
 .hero-h1 {
@@ -459,10 +535,30 @@ img {
   margin-bottom: 32px;
 }
 
+@media (max-width: 600px) {
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+}
+
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* Hero inline bottom stat strip */
@@ -470,8 +566,8 @@ img {
   position: relative;
   z-index: 3;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 24px 0;
-  background-color: rgba(15, 27, 45, 0.4);
+  padding: 20px 0;
+  background-color: rgba(15, 27, 45, 0.55);
   backdrop-filter: blur(4px);
 }
 
@@ -490,16 +586,18 @@ img {
 
 .hero-strip-num {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: clamp(1.05rem, 3.8vw, 1.6rem);
   font-weight: 800;
   color: #FFFFFF;
-  line-height: 1.1;
+  line-height: 1.15;
+  word-break: break-word;
 }
 
 .hero-strip-label {
-  font-size: 0.875rem; /* 14px */
-  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.75rem, 2.6vw, 0.875rem);
+  color: rgba(255, 255, 255, 0.75);
   margin-top: 4px;
+  word-break: break-word;
 }
 
 .hero-strip-divider {
@@ -515,7 +613,14 @@ img {
   .hero-strip-items {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .hero-strip-items {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
@@ -546,6 +651,15 @@ img {
 
 .asym-card-sub {
   min-height: 248px;
+}
+
+@media (max-width: 600px) {
+  .asym-card-main {
+    min-height: 320px;
+  }
+  .asym-card-sub {
+    min-height: 220px;
+  }
 }
 
 .category-card {
@@ -598,6 +712,19 @@ img {
   margin-bottom: 12px;
 }
 
+@media (max-width: 600px) {
+  .cat-content {
+    padding: 20px 16px;
+  }
+  .cat-title {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+  }
+  .cat-desc {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+}
+
 .cat-action {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -606,6 +733,42 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+/* Brand Strip on Home */
+.brand-strip-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px 52px;
+}
+
+.brand-strip-item-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+.brand-strip-item-more {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .brand-strip-items {
+    gap: 14px 20px;
+  }
+  .brand-strip-item-name {
+    font-size: 1.1rem;
+  }
+  .brand-strip-item-more {
+    font-size: 1rem;
+  }
 }
 
 /* ==========================================================================
@@ -665,6 +828,12 @@ img {
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+@media (max-width: 480px) {
+  .product-body {
+    padding: 18px 16px;
+  }
 }
 
 .product-brand {
@@ -759,33 +928,73 @@ img {
   border-color: var(--blue);
 }
 
+.filter-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  .filter-bar {
+    padding: 16px 14px;
+  }
+  .filter-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .filter-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ==========================================================================
    5. DETAIL PRODUK TABLE
    ========================================================================== */
+.spec-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 24px;
+}
+
 .spec-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
+  word-break: break-word;
   margin-top: 16px;
   margin-bottom: 24px;
 }
 
 .spec-table th, .spec-table td {
-  padding: 12px 16px;
+  padding: 12px 14px;
   border-bottom: var(--border-thin);
   text-align: left;
   font-size: 0.95rem;
+  vertical-align: top;
 }
 
 .spec-table th {
   font-family: var(--font-heading);
   color: var(--muted);
-  width: 35%;
+  width: 40%;
   font-weight: 600;
 }
 
 .spec-table td {
   color: var(--ink);
   font-weight: 500;
+  width: 60%;
+}
+
+@media (max-width: 480px) {
+  .spec-table th, .spec-table td {
+    padding: 10px 8px;
+    font-size: 0.875rem;
+  }
 }
 
 /* ==========================================================================
@@ -878,7 +1087,7 @@ img {
   z-index: 500;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
 }
 
 .lightbox-modal.active {
@@ -886,16 +1095,16 @@ img {
 }
 
 .lightbox-img {
-  max-width: 90vw;
-  max-height: 85vh;
+  max-width: 95vw;
+  max-height: 82vh;
   object-fit: contain;
   border-radius: var(--radius-card);
 }
 
 .lightbox-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
   color: #FFFFFF;
@@ -951,6 +1160,45 @@ img {
   color: var(--blue);
 }
 
+.service-cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 24px;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 480px) {
+  .service-cities-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .city-link {
+    padding: 16px 12px;
+  }
+  .city-name {
+    font-size: clamp(1.2rem, 4.8vw, 1.6rem);
+  }
+  .city-arrow {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+}
+
+/* Contact Cards */
+.contact-card {
+  background-color: var(--surface);
+  border: var(--border-thin);
+  border-radius: var(--radius-card);
+  padding: 36px;
+}
+
+@media (max-width: 600px) {
+  .contact-card {
+    padding: 20px 16px;
+  }
+}
+
 /* ==========================================================================
    9. CTA AKHIR (SECTION GELAP --DARK)
    ========================================================================== */
@@ -970,6 +1218,31 @@ img {
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.2rem;
   margin-bottom: 32px;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .cta-dark-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .cta-actions .btn {
+    width: 100%;
+    justify-content: center;
+    height: 50px;
+    font-size: 1rem;
+  }
 }
 
 /* ==========================================================================
@@ -1019,6 +1292,20 @@ img {
   font-size: 0.875rem;
 }
 
+@media (max-width: 600px) {
+  .footer-dark {
+    padding-top: 56px;
+    padding-bottom: 32px;
+  }
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
 .watermark {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.875rem;
@@ -1028,10 +1315,10 @@ img {
 /* Floating WhatsApp Button */
 .floating-wa {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
+  bottom: 20px;
+  right: 18px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background-color: var(--wa-green);
   color: #FFFFFF;

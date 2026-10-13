@@ -81,37 +81,39 @@
 
             <!-- Tabel Spesifikasi Bersih -->
             <h3 style="font-size: 1.25rem; margin-top: 24px; margin-bottom: 8px;">Spesifikasi Unit</h3>
-            <table class="spec-table">
-                <tbody>
-                    <tr>
-                        <th>Brand Engine</th>
-                        <td>{{ $product->brand ?: '-' }}</td>
-                    </tr>
-                    <tr>
-                        <th>Kapasitas</th>
-                        <td>{{ $product->kapasitas_label ?: ($product->kapasitas_kva ? $product->kapasitas_kva . ' KVA' : '-') }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tipe Kanopi / Rangka</th>
-                        <td>{{ ucfirst($product->tipe) }} Type</td>
-                    </tr>
-                    <tr>
-                        <th>Kategori Peralatan</th>
-                        <td>{{ ucfirst($product->kategori) }}</td>
-                    </tr>
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <tbody>
+                        <tr>
+                            <th>Brand Engine</th>
+                            <td>{{ $product->brand ?: '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Kapasitas</th>
+                            <td>{{ $product->kapasitas_label ?: ($product->kapasitas_kva ? $product->kapasitas_kva . ' KVA' : '-') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipe Kanopi / Rangka</th>
+                            <td>{{ ucfirst($product->tipe) }} Type</td>
+                        </tr>
+                        <tr>
+                            <th>Kategori Peralatan</th>
+                            <td>{{ ucfirst($product->kategori) }}</td>
+                        </tr>
 
-                    @if(!empty($product->spesifikasi) && is_array($product->spesifikasi))
-                        @foreach($product->spesifikasi as $key => $val)
-                            @if(is_string($val) && !empty($val))
-                                <tr>
-                                    <th>{{ is_string($key) ? ucfirst(str_replace('_', ' ', $key)) : 'Spesifikasi' }}</th>
-                                    <td>{{ $val }}</td>
-                                </tr>
-                            @endif
-                        @endforeach
-                    @endif
-                </tbody>
-            </table>
+                        @if(!empty($product->spesifikasi) && is_array($product->spesifikasi))
+                            @foreach($product->spesifikasi as $key => $val)
+                                @if(is_string($val) && !empty($val))
+                                    <tr>
+                                        <th>{{ is_string($key) ? ucfirst(str_replace('_', ' ', $key)) : 'Spesifikasi' }}</th>
+                                        <td>{{ $val }}</td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Tombol Pesan Langsung via WhatsApp -->
             <div style="margin-top: 32px;">

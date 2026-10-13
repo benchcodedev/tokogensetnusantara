@@ -167,13 +167,13 @@
         <div style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 24px; text-align: center;">
             Pilihan Brand Mesin Genset
         </div>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px 52px;">
+        <div class="brand-strip-items">
             @foreach($brands as $brand)
-                <div style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: var(--ink); opacity: 0.9;">
+                <div class="brand-strip-item-name">
                     {{ $brand->nama }}
                 </div>
             @endforeach
-            <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--muted);">
+            <div class="brand-strip-item-more">
                 dan lainnya
             </div>
         </div>
@@ -345,17 +345,15 @@
         <p>
             Konsultasikan kebutuhan kapasitas daya (1000W - 2500 KVA), ketersediaan tipe silent atau open, dan jadwal pengiriman langsung via WhatsApp.
         </p>
-        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <div class="cta-actions">
             <a href="{{ $waUrl }}?text={{ rawurlencode('Halo Toko Genset Nusantara, saya butuh informasi unit ready stock.') }}" 
                target="_blank" 
                rel="noopener noreferrer" 
-               class="btn btn-primary" 
-               style="font-size: 1.1rem; padding: 0 36px; height: 56px;">
+               class="btn btn-primary">
                 Hubungi via WhatsApp
             </a>
             <a href="{{ route('catalog.index') }}" 
-               class="btn btn-white-outline" 
-               style="font-size: 1.1rem; padding: 0 32px; height: 56px;">
+               class="btn btn-white-outline">
                 Lihat Katalog Produk
             </a>
         </div>
